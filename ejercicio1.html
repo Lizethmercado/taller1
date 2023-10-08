@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivinar número</title>
+
+
+</head>
+
+<body>
+    <h1>Adivina un número</h1>
+    <p>Intenta adivinar el número entre 1 y 100:</p>
+    <input type="number" id="numeroAdivinanza" required>
+    <button onclick="adivinarNumero()">Enviar</button>
+    <p id="pista"></p>
+     
+    
+    <script>
+        const numeroAleatorio = Math.floor(Math.random() * 100) + 1;
+        function adivinarNumero() {
+            
+            const numeroUsuario = parseInt(document.querySelector("#numeroAdivinanza").value);
+ 
+            if (numeroUsuario == numeroAleatorio) {
+                document.querySelector("#pista").innerHTML = "¡Adivinaste! Felicitaciones";
+            } else if (numeroUsuario > numeroAleatorio) {
+                document.querySelector("#pista").innerHTML = "Más bajo";
+            } else if (numeroUsuario < numeroAleatorio) {
+                document.querySelector("#pista").innerHTML = "Más alto";
+            }
+            return false; 
+
+        }
+    </script>
+</body>
+
+</html>

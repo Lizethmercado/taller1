@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h2>Calculadora de Interés Compuesto</h2>
+
+    <p>Capital Inicial:</p>
+    <input type="number" id="capitalInicial" required>
+
+    <p>Tasa de interés anual (%):</p>
+    <input type="number" id="tasaInteresAnual" required>
+
+    <p>Período de inversión en años:</p>
+    <input type="number" id="periodoAnios" required>
+
+    <button onclick="calcularInteresCompuesto()">Calcular</button>
+
+    <h3>resultado:</h3>
+    <p id="montoFinal"></p>
+
+    <script>
+        function calcularInteresCompuesto() {
+            
+            var capitalInicial = parseFloat(document.getElementById("capitalInicial").value);
+            var tasaInteresAnual = parseFloat(document.getElementById("tasaInteresAnual").value) / 100;
+            var periodoAnios = parseInt(document.getElementById("periodoAnios").value);
+       
+            var montoFinal = capitalInicial * Math.pow(1 + tasaInteresAnual, periodoAnios);
+
+            document.getElementById("montoFinal").textContent = "El monto final es: $" + montoFinal.toFixed(2);
+        }
+    </script>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+    <body>
+        <h1>Calculadora de estadísticas</h1>
+        <p>Ingresa una lista de números separados por coma:</p>
+        <input type="text" id="numeros"> 
+        <button onclick="calcularEstadisticas()">Calcular</button>
+    
+        <div id="resultados"></div>
+    
+        <script>
+            function calcularEstadisticas() {
+                const numerosInput = document.getElementById("numeros");
+                const resultadosDiv = document.getElementById("resultados");
+    
+                const numerosTexto = numerosInput.value.split(",");
+                const numeros = numerosTexto.map(numero => parseFloat(numero));
+    
+                const media = numeros.reduce((acc, numero) => acc + numero, 0) / numeros.length;
+    
+                const sortedNumeros = numeros.slice().sort((a, b) => a - b);
+                const middleIndex = Math.floor(sortedNumeros.length / 2);
+                const mediana = sortedNumeros.length % 2 == 0
+                    ? (sortedNumeros[middleIndex - 1] + sortedNumeros[middleIndex]) / 2
+                    : sortedNumeros[middleIndex];
+    
+                const sumaCuadrados = numeros.reduce((acc, numero) => acc + Math.pow(numero - media, 2), 0);
+                const desviacionEstandar = Math.sqrt(sumaCuadrados / numeros.length);
+    
+                resultadosDiv.innerHTML = `
+                    <p>Media: ${media.toFixed(2)}</p>
+                    <p>Mediana: ${mediana.toFixed(2)}</p>
+                    <p>Desviación Estándar: ${desviacionEstandar.toFixed(2)}</p>
+                `;
+            }
+        </script>
+    </body>
+    
+
+
+</html>

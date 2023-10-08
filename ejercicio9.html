@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Calcular estadística</h1>
+
+    <p>Ingresa una lista de calificaciones divididas por comas:</p>
+    <input type="text" id="calificaciones"> 
+
+    <button onclick="calcularEstadistica()">Calcular</button>
+
+    <div id="resultados"></div>
+
+    <script>
+        function calcularEstadistica() {
+            const calificacionesUsuario = document.getElementById("calificaciones");
+            const resultadosDiv = document.getElementById("resultados");
+
+            const calificacionesTexto = calificacionesUsuario.value.split(",");
+            const calificaciones = calificacionesTexto.map(calificacion => parseFloat(calificacion));
+
+            if (calificaciones.some(isNaN)) {
+                resultadosDiv.innerHTML = "Por favor, ingrese calificaciones válidas.";
+                return;
+            }
+
+            if (calificaciones.length === 0) {
+                resultadosDiv.innerHTML = "Por favor, ingrese al menos una calificación.";
+                return;
+            }
+
+            const promedio = calificaciones.reduce((acc, calificacion) => acc + calificacion, 0) / calificaciones.length;
+
+            const calificacionMaxima = Math.max(...calificaciones);
+            const calificacionMinima = Math.min(...calificaciones);
+
+            resultadosDiv.innerHTML = `
+                <p>Promedio: ${promedio.toFixed(2)}</p>
+                <p>Calificación más alta: ${calificacionMaxima}</p>
+                <p>Calificación más baja: ${calificacionMinima}</p>
+            `;
+        }
+    </script>
+</body>
+
+
+</html>

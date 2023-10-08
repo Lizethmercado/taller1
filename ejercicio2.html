@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Registro de estudiantes</h1>
+
+    <p>Nombre:</p>
+    <input type="text" id="nombre">
+    <p>Edad:</p>
+    <input type="number" id="edad">
+    <p>Número de identificación:</p>
+    <input type="number" id="identificacion"> <br><br>
+
+   
+    <button onclick="registrarEstudiante()">Agregar</button>
+
+    <p>Buscar estudiante con identificación:</p>
+    <input type="number" id="buscarIdentificacion">
+    <input type="submit" value="Buscar" onclick="buscarIdentificacionEstudiante()">
+
+    <script>
+       
+        var estudiantes = [];
+
+        function registrarEstudiante() {
+            var nombre = document.getElementById("nombre").value;
+            var edad = document.getElementById("edad").value;
+            var identificacion = document.getElementById("identificacion").value;
+
+           
+            var estudiante = {
+                nombre: nombre,
+                edad: edad,
+                identificacion: identificacion
+            };
+
+            
+            estudiantes.push(estudiante);
+
+            
+            document.getElementById("nombre").value = "";
+            document.getElementById("edad").value = "";
+            document.getElementById("identificacion").value = "";
+
+            
+        }
+
+        function buscarIdentificacionEstudiante() {
+            var buscarIdentificacion = document.getElementById("buscarIdentificacion").value;
+
+            
+            var estudianteEncontrado = estudiantes.find(function(estudiante) {
+                return estudiante.identificacion === buscarIdentificacion;
+            });
+
+           
+            if (estudianteEncontrado) {
+                alert("Nombre: " + estudianteEncontrado.nombre + "\nEdad: " + estudianteEncontrado.edad);
+            } else {
+                alert("Estudiante no encontrado.");
+            }
+        }
+    </script>
+
+</body>
+
+</html>

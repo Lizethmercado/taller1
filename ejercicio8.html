@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Generador de contraseñas</h1>
+    <p>Elige la longitud de tu contraseña:</p>
+    <input type="number" id="length" min="8" max="32" step="1"><br><br>
+
+    <p>¿Incluir mayúsculas?</p>
+    <input type="radio" name="uppercase" value="si" id="uppercase-yes"> Sí
+    <input type="radio" name="uppercase" value="no" id="uppercase-no"> No<br><br>
+
+    <p>¿Incluir minúsculas?</p>
+    <input type="radio" name="lowercase" value="si" id="lowercase-yes"> Sí
+    <input type="radio" name="lowercase" value="no" id="lowercase-no"> No<br><br>
+
+    <p>¿Incluir números?</p>
+    <input type="radio" name="numbers" value="si" id="numbers-yes"> Sí
+    <input type="radio" name="numbers" value="no" id="numbers-no"> No<br><br>
+
+    <p>¿Incluir caracteres especiales?</p>
+    <input type="radio" name="special" value="si" id="special-yes"> Sí
+    <input type="radio" name="special" value="no" id="special-no"> No<br><br>
+
+    <button onclick="generatePassword()">Generar Contraseña</button><br><br>
+
+    <p>Contraseña generada:</p>
+    <input type="text" id="password" readonly><br><br>
+
+    <script>
+        function generatePassword() {
+            const length = parseInt(document.getElementById("length").value);
+            const includeUppercase = document.getElementById("uppercase-yes").checked;
+            const includeLowercase = document.getElementById("lowercase-yes").checked;
+            const includeNumbers = document.getElementById("numbers-yes").checked;
+            const includeSpecial = document.getElementById("special-yes").checked;
+
+            const uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
+            const numberChars = "0123456789";
+            const specialChars = "!@#$%^&*()_+[]{}|;:,.<>?";
+
+            let charset = "";
+
+            if (includeUppercase) {
+                charset += uppercaseChars;
+            }
+            if (includeLowercase) {
+                charset += lowercaseChars;
+            }
+            if (includeNumbers) {
+                charset += numberChars;
+            }
+            if (includeSpecial) {
+                charset += specialChars;
+            }
+
+            if (charset === "") {
+                alert("Debes seleccionar al menos un tipo de carácter.");
+                return;
+            }
+
+            let password = "";
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * charset.length);
+                password += charset.charAt(randomIndex);
+            }
+
+            document.getElementById("password").value = password;
+        }
+    </script>
+
+
+
+
+
+
+</body>
+
+</html>

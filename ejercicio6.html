@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Registro de libros</h1>
+
+    <p>Título:</p>
+    <input type="text" id="titulo" required>
+    <p>Autor:</p>
+    <input type="text" id="autor" required>
+    <p>Año de publicación:</p>
+    <input type="number" id="anioPublicacion" required>
+
+    <button onclick="agregarLibro()">Agregar</button>
+
+    <p>Buscar libro por título o autor:</p>
+    <input type="text" id="buscarTexto">
+    <button onclick="buscarLibroAutorTitulo()">Buscar</button>
+
+    <script>
+        var libros = [];
+
+        function agregarLibro() {
+            var titulo = document.getElementById("titulo").value;
+            var autor = document.getElementById("autor").value;
+            var anioPublicacion = document.getElementById("anioPublicacion").value;
+
+            var libro = {
+                titulo: titulo,
+                autor: autor,
+                anioPublicacion: anioPublicacion
+            };
+
+            libros.push(libro);
+
+            document.getElementById("titulo").value = "";
+            document.getElementById("autor").value = "";
+            document.getElementById("anioPublicacion").value = "";
+        }
+
+        function buscarLibroAutorTitulo() {
+            var buscarTexto = document.getElementById("buscarTexto").value; 
+
+            var resultados = libros.filter(function (libro) {
+                return libro.titulo.toLowerCase().includes(buscarTexto.toLowerCase()) || libro.autor.toLowerCase().includes(buscarTexto.toLowerCase());
+            });
+
+            if (resultados.length > 0) {
+                var mensaje = "Resultados encontrados:\n";
+                resultados.forEach(function (libro) {
+                    mensaje += "Título: " + libro.titulo + ", Autor: " + libro.autor + ", Año de publicación: " + libro.anioPublicacion + "\n";
+                });
+                alert(mensaje);
+            } else {
+                alert("No se encontraron resultados.");
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>

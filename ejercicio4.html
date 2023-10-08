@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de multiplicar</title>
+</head>
+<body>
+    <h1>Tabla de multiplicar</h1>
+    <div>
+        <p>Introduce el número del que deseas ver la tabla de multiplicar:</p>
+        <input type="number" id="numero" required>
+        <p>Introduce las filas que deseas ver:</p>
+        <input type="number" id="filas" required>
+        <button onclick="generarTabla()">Generar Tabla</button>
+        <div id="resultado"></div>
+    </div>
+    
+    <script>
+        function generarTabla() {
+            var numero = parseInt(document.getElementById("numero").value);
+            var filas = parseInt(document.getElementById("filas").value);
+
+            if (filas > 10) {
+            filas = 10;
+        }
+            var resultado = "";
+
+            for (var i = 1; i <= filas; i++) {
+                resultado += numero + "x" + i + "=" + (numero * i) + '<br>';
+            }
+    
+            document.getElementById('resultado').innerHTML = resultado;
+        }
+    </script>
+</body>
+</html>
