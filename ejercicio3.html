@@ -18,10 +18,10 @@
     
         <script>
             function calcularEstadisticas() {
-                const numerosInput = document.getElementById("numeros");
+                const numerosIngresados = document.getElementById("numeros");
                 const resultadosDiv = document.getElementById("resultados");
     
-                const numerosTexto = numerosInput.value.split(",");
+                const numerosTexto = numerosIngresados.value.split(",");
                 const numeros = numerosTexto.map(numero => parseFloat(numero));
     
                 const media = numeros.reduce((acc, numero) => acc + numero, 0) / numeros.length;

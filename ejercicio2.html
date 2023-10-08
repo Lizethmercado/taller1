@@ -56,12 +56,12 @@
 
             
             var estudianteEncontrado = estudiantes.find(function(estudiante) {
-                return estudiante.identificacion === buscarIdentificacion;
+                return estudiante.identificacion == buscarIdentificacion;
             });
 
            
             if (estudianteEncontrado) {
-                alert("Nombre: " + estudianteEncontrado.nombre + "\nEdad: " + estudianteEncontrado.edad);
+                alert("Nombre: " + estudianteEncontrado.nombre + "\n Edad: " + estudianteEncontrado.edad);
             } else {
                 alert("Estudiante no encontrado.");
             }
